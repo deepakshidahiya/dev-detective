@@ -352,6 +352,9 @@ function renderBattleResult(userOne, userTwo) {
   badgeOne.hidden = false;
   badgeTwo.hidden = false;
   battleResult.hidden = false;
+
+  battleResult.focus({ preventScroll: true });
+  battleResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function describeBattleFailure(resultOne, resultTwo) {
@@ -370,7 +373,14 @@ function handleBattleReset() {
   battleUsernameOne.value = '';
   battleUsernameTwo.value = '';
   clearBattleError();
+
   battleResult.hidden = true;
+  battleScore.textContent = '';
+  battleCardOne.textContent = '';
+  battleCardOne.classList.remove('battle-card--winner', 'battle-card--loser');
+  battleCardTwo.textContent = '';
+  battleCardTwo.classList.remove('battle-card--winner', 'battle-card--loser');
+
   battleUsernameOne.focus();
 }
 

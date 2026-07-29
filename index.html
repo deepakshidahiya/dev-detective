@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dev Detective | GitHub Profile Search &amp; Battle Mode</title>
   <meta name="description" content="Search any GitHub profile to explore their bio, activity, and stats, or compare two developers head-to-head in Battle Mode. Built with vanilla JavaScript and the GitHub REST API.">
-  <meta name="theme-color" content="#14120f">
+  <meta name="theme-color" content="#09090b">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
@@ -54,11 +54,13 @@
         <button type="submit" id="search-btn" class="search-btn">Search</button>
       </form>
 
+      <p class="search-hint">Try <strong>octocat</strong>, <strong>torvalds</strong>, or <strong>gaearon</strong>.</p>
+
       <div id="loading-state" class="state-container loading-state" aria-live="polite" hidden>
         <p>Loading...</p>
       </div>
 
-      <div id="error-state" class="state-container error-state" hidden>
+      <div id="error-state" class="state-container error-state" role="alert" hidden>
         <p id="error-message"></p>
       </div>
 
@@ -109,15 +111,17 @@
         <button type="submit" id="battle-submit-btn" class="search-btn">Battle!</button>
       </form>
 
+      <p class="search-hint">Try <strong>octocat</strong> vs <strong>torvalds</strong>.</p>
+
       <div id="battle-loading-state" class="state-container loading-state" aria-live="polite" hidden>
         <p>Loading...</p>
       </div>
 
-      <div id="battle-error-state" class="state-container error-state" hidden>
+      <div id="battle-error-state" class="state-container error-state" role="alert" hidden>
         <p id="battle-error-message"></p>
       </div>
 
-      <div id="battle-result" class="battle-result" hidden>
+      <div id="battle-result" class="battle-result" role="region" aria-label="Battle result" tabindex="-1" hidden>
         <p id="battle-score" class="battle-score" aria-live="polite"></p>
 
         <div class="battle-cards">
