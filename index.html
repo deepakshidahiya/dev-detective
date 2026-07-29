@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Detective | GitHub Profile Search</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="logo">
+      <h1 class="logo__text">Dev<span>Detective</span></h1>
+    </div>
+
+    <nav class="mode-toggle" aria-label="Search mode toggle">
+      <button type="button" id="single-mode-btn" class="mode-btn mode-btn--active">Single Search</button>
+      <button type="button" id="battle-mode-btn" class="mode-btn">Battle Mode</button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+
+    <!-- Single Search Mode -->
+    <section id="single-search-section" class="search-section">
+
+      <form id="search-form" class="search-form">
+        <label for="username-input" class="visually-hidden">GitHub username</label>
+        <input
+          type="text"
+          id="username-input"
+          name="username"
+          class="search-input"
+          placeholder="Enter a GitHub username"
+          autocomplete="off"
+          required
+        >
+        <button type="submit" id="search-btn" class="search-btn">Search</button>
+      </form>
+
+      <div id="loading-state" class="state-container loading-state" aria-live="polite" hidden>
+        <p>Loading...</p>
+      </div>
+
+      <div id="error-state" class="state-container error-state" hidden>
+        <p id="error-message"></p>
+      </div>
+
+      <article id="profile-card" class="profile-card" hidden>
+        <img id="profile-avatar" class="profile-avatar" src="" alt="GitHub profile avatar">
+        <div class="profile-info">
+          <h2 id="profile-name" class="profile-name"></h2>
+          <p id="profile-username" class="profile-username"></p>
+          <p id="profile-bio" class="profile-bio"></p>
+          <p id="profile-joined" class="profile-joined"></p>
+          <a id="profile-link" class="profile-link" href="" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+      </article>
+
+      <section id="repo-list-section" class="repo-list-section" hidden>
+        <h3 class="repo-list-title">Latest Repositories</h3>
+        <ul id="repo-list" class="repo-list"></ul>
+      </section>
+
+    </section>
+
+    <!-- Battle Mode -->
+    <section id="battle-mode-section" class="battle-section" hidden>
+
+      <form id="battle-form" class="battle-form">
+        <div class="battle-inputs">
+          <div class="battle-input-group">
+            <label for="battle-username-one" class="visually-hidden">First GitHub username</label>
+            <input
+              type="text"
+              id="battle-username-one"
+              class="search-input"
+              placeholder="Player One username"
+              autocomplete="off"
+              required
+            >
+          </div>
+
+          <span class="battle-vs">VS</span>
+
+          <div class="battle-input-group">
+            <label for="battle-username-two" class="visually-hidden">Second GitHub username</label>
+            <input
+              type="text"
+              id="battle-username-two"
+              class="search-input"
+              placeholder="Player Two username"
+              autocomplete="off"
+              required
+            >
+          </div>
+        </div>
+
+        <button type="submit" id="battle-submit-btn" class="search-btn">Battle!</button>
+      </form>
+
+      <div id="battle-loading-state" class="state-container loading-state" aria-live="polite" hidden>
+        <p>Loading...</p>
+      </div>
+
+      <div id="battle-error-state" class="state-container error-state" hidden>
+        <p id="battle-error-message"></p>
+      </div>
+
+      <div id="battle-result" class="battle-result" hidden>
+        <article id="battle-card-one" class="battle-card"></article>
+        <article id="battle-card-two" class="battle-card"></article>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>&copy; 2026 Dev Detective &mdash; Built with the GitHub REST API.</p>
+  </footer>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>

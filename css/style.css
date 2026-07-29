@@ -1,0 +1,582 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM — CUSTOM PROPERTIES
+   ========================================================================== */
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #0d1117;
+  --bg-surface: #161b22;
+  --bg-surface-hover: #1c2128;
+
+  /* Borders */
+  --border-color: #30363d;
+
+  /* Text */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+
+  /* Accents */
+  --accent-blue: #58a6ff;
+  --accent-blue-hover: #79b8ff;
+  --success-green: #3fb950;
+  --error-red: #f85149;
+  --warning-star: #d29922;
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ==========================================================================
+   2. RESET & GLOBAL STYLES
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-blue-hover);
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ==========================================================================
+   3. BUTTONS & INPUTS (GLOBAL)
+   ========================================================================== */
+
+.search-input {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.25);
+}
+
+.search-input:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-btn {
+  background-color: var(--accent-blue);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--bg-primary);
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-lg);
+  white-space: nowrap;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: var(--accent-blue-hover);
+}
+
+.search-btn:active {
+  transform: translateY(1px);
+}
+
+.search-btn:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.search-btn:disabled {
+  background-color: var(--bg-surface-hover);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.search-btn:disabled:hover {
+  background-color: var(--bg-surface-hover);
+}
+
+
+/* ==========================================================================
+   4. HEADER
+   ========================================================================== */
+
+.app-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-lg) var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo__text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.logo__text span {
+  color: var(--accent-blue);
+}
+
+.mode-toggle {
+  display: flex;
+  gap: var(--space-xs);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs);
+}
+
+.mode-btn {
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mode-btn:hover {
+  background-color: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.mode-btn:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.mode-btn--active {
+  background-color: var(--accent-blue);
+  color: var(--bg-primary);
+}
+
+.mode-btn--active:hover {
+  background-color: var(--accent-blue);
+}
+
+
+/* ==========================================================================
+   5. MAIN LAYOUT & SEARCH FORM
+   ========================================================================== */
+
+.app-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+
+/* ==========================================================================
+   6. STATE STYLES — LOADING & ERROR
+   ========================================================================== */
+
+.state-container {
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.loading-state {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.loading-state[hidden] {
+  display: none;
+}
+
+.loading-state::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-state {
+  background-color: rgba(248, 81, 73, 0.1);
+  border: 1px solid var(--error-red);
+  border-left: 4px solid var(--error-red);
+  color: var(--error-red);
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   7. PROFILE CARD
+   ========================================================================== */
+
+.profile-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.profile-card[hidden] {
+  display: none;
+}
+
+.profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.profile-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.profile-username {
+  font-size: 0.95rem;
+  color: var(--accent-blue);
+}
+
+.profile-bio {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.profile-joined {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.profile-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   8. REPOSITORY LIST
+   ========================================================================== */
+
+.repo-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.repo-list-section[hidden] {
+  display: none;
+}
+
+.repo-list-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.repo-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Prepared for JS-rendered <li> items — e.g. <li class="repo-item"> */
+.repo-item {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: background-color 0.2s ease;
+}
+
+.repo-item:hover {
+  background-color: var(--bg-surface-hover);
+}
+
+.repo-item__name {
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+.repo-item__stars {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--warning-star);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   9. BATTLE MODE
+   ========================================================================== */
+
+.battle-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.battle-section[hidden] {
+  display: none;
+}
+
+.battle-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.battle-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: stretch;
+}
+
+.battle-input-group {
+  width: 100%;
+}
+
+.battle-vs {
+  align-self: center;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.battle-result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.battle-result[hidden] {
+  display: none;
+}
+
+.battle-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.battle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Prepared modifiers — applied via JS once totals are compared */
+.battle-card--winner {
+  border-color: var(--success-green);
+  box-shadow: 0 0 0 1px var(--success-green);
+}
+
+.battle-card--loser {
+  border-color: var(--error-red);
+  box-shadow: 0 0 0 1px var(--error-red);
+}
+
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+
+.app-footer {
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+}
+
+
+/* ==========================================================================
+   11. RESPONSIVE — TABLET (>= 768px)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .app-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-xl);
+  }
+
+  .app-main {
+    padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+  }
+
+  .search-form {
+    flex-direction: row;
+  }
+
+  .profile-card {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .profile-info {
+    align-items: flex-start;
+  }
+
+  .battle-inputs {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .battle-result {
+    flex-direction: row;
+  }
+
+  .battle-card {
+    flex: 1;
+  }
+}
+
+
+/* ==========================================================================
+   12. RESPONSIVE — DESKTOP (>= 1024px)
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .app-main {
+    max-width: 960px;
+  }
+
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .repo-item {
+    padding: var(--space-lg);
+  }
+}
