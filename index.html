@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dev Detective | GitHub Profile Search</title>
+  <title>Dev Detective | GitHub Profile Search &amp; Battle Mode</title>
+  <meta name="description" content="Search any GitHub profile to explore their bio, activity, and stats, or compare two developers head-to-head in Battle Mode. Built with vanilla JavaScript and the GitHub REST API.">
+  <meta name="theme-color" content="#14120f">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <meta property="og:title" content="Dev Detective | GitHub Profile Search &amp; Battle Mode">
+  <meta property="og:description" content="Search any GitHub profile or compare two developers head-to-head — followers, repositories, and account age at a glance.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,8 +32,8 @@
   <main class="app-main">
 
     <p class="app-intro">
-      Search any GitHub username to explore their profile, activity, and top repositories.
-      Or switch to Battle Mode to compare two developers side-by-side.
+      Search any GitHub username to explore their profile and activity,
+      or switch to Battle Mode to compare two developers side-by-side.
     </p>
 
     <section id="single-search-section" class="search-section">
@@ -62,11 +72,6 @@
           <a id="profile-link" class="profile-link" href="" target="_blank" rel="noopener noreferrer"></a>
         </div>
       </article>
-
-      <section id="repo-list-section" class="repo-list-section" hidden>
-        <h3 class="repo-list-title">Latest Repositories</h3>
-        <ul id="repo-list" class="repo-list"></ul>
-      </section>
 
     </section>
 

@@ -19,9 +19,6 @@ const profileBio = document.getElementById('profile-bio');
 const profileJoined = document.getElementById('profile-joined');
 const profileLink = document.getElementById('profile-link');
 
-const repoListSection = document.getElementById('repo-list-section');
-const repoList = document.getElementById('repo-list');
-
 const battleModeSection = document.getElementById('battle-mode-section');
 const battleForm = document.getElementById('battle-form');
 const battleUsernameOne = document.getElementById('battle-username-one');
@@ -55,8 +52,6 @@ const requiredElements = {
   profileBio,
   profileJoined,
   profileLink,
-  repoListSection,
-  repoList,
   battleModeSection,
   battleForm,
   battleUsernameOne,
