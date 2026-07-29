@@ -79,6 +79,103 @@ function verifyRequiredElements() {
   return true;
 }
 
+async function fetchGithubUser(username) {
+  let response;
+
+  try {
+    response = await fetch(`https://api.github.com/users/${username}`);
+  } catch (networkError) {
+    throw new Error('Network error. Check your connection and try again.');
+  }
+
+  if (response.status === 404) {
+    throw new Error('User not found. Check the username and try again.');
+  }
+
+  if (!response.ok) {
+    throw new Error('Something went wrong. Please try again.');
+  }
+
+  return response.json();
+}
+
+function showLoading() {
+  loadingState.hidden = false;
+  searchBtn.disabled = true;
+}
+
+function hideLoading() {
+  loadingState.hidden = true;
+  searchBtn.disabled = false;
+}
+
+function showError(message) {
+  errorMessage.textContent = message;
+  errorState.hidden = false;
+}
+
+function clearError() {
+  errorState.hidden = true;
+  errorMessage.textContent = '';
+}
+
+function renderProfile(user) {
+  profileAvatar.src = user.avatar_url;
+  profileName.textContent = user.name || user.login;
+  profileUsername.textContent = `@${user.login}`;
+  profileBio.textContent = user.bio || 'No bio available.';
+
+  const joinedDate = new Date(user.created_at);
+  profileJoined.textContent = `Joined ${joinedDate.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })}`;
+
+  if (user.blog) {
+    profileLink.href = user.blog.startsWith('http') ? user.blog : `https://${user.blog}`;
+    profileLink.textContent = 'Visit portfolio';
+  } else {
+    profileLink.href = user.html_url;
+    profileLink.textContent = 'View GitHub profile';
+  }
+
+  profileCard.hidden = false;
+}
+
+async function handleSearchSubmit(event) {
+  event.preventDefault();
+
+  const username = usernameInput.value.trim();
+
+  clearError();
+
+  if (!username) {
+    showError('Please enter a GitHub username.');
+    return;
+  }
+
+  profileCard.hidden = true;
+  showLoading();
+
+  try {
+    const user = await fetchGithubUser(username);
+    renderProfile(user);
+  } catch (error) {
+    showError(error.message);
+  } finally {
+    hideLoading();
+  }
+}
+
+function handleUsernameInput() {
+  clearError();
+
+  if (usernameInput.value.trim() === '') {
+    profileCard.hidden = true;
+  }
+}
+
 function init() {
   const allElementsFound = verifyRequiredElements();
 
@@ -87,8 +184,11 @@ function init() {
     return;
   }
 
+  searchForm.addEventListener('submit', handleSearchSubmit);
+  usernameInput.addEventListener('input', handleUsernameInput);
+
   console.log('Dev Detective: all required DOM elements found.');
-  console.log('Dev Detective: initialization complete. Ready for Phase 2 (API integration).');
+  console.log('Dev Detective: initialization complete. Single-search API integration active.');
 }
 
 init();
