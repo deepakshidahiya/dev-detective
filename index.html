@@ -26,7 +26,6 @@
       Or switch to Battle Mode to compare two developers side-by-side.
     </p>
 
-    <!-- Single Search Mode -->
     <section id="single-search-section" class="search-section">
 
       <h2 class="search-heading">Search a GitHub Profile</h2>
@@ -71,7 +70,6 @@
 
     </section>
 
-    <!-- Battle Mode -->
     <section id="battle-mode-section" class="battle-section" hidden>
 
       <h2 class="search-heading">Battle Two Developers</h2>
@@ -86,7 +84,6 @@
               class="search-input"
               placeholder="Player One username"
               autocomplete="off"
-              required
             >
           </div>
 
@@ -100,7 +97,6 @@
               class="search-input"
               placeholder="Player Two username"
               autocomplete="off"
-              required
             >
           </div>
         </div>
@@ -117,8 +113,14 @@
       </div>
 
       <div id="battle-result" class="battle-result" hidden>
-        <article id="battle-card-one" class="battle-card"></article>
-        <article id="battle-card-two" class="battle-card"></article>
+        <p id="battle-score" class="battle-score" aria-live="polite"></p>
+
+        <div class="battle-cards">
+          <article id="battle-card-one" class="battle-card"></article>
+          <article id="battle-card-two" class="battle-card"></article>
+        </div>
+
+        <button type="button" id="battle-reset-btn" class="battle-reset-btn">Battle Again</button>
       </div>
 
     </section>

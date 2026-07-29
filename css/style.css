@@ -3,26 +3,21 @@
    ========================================================================== */
 
 :root {
-  /* Backgrounds */
   --bg-primary: #14120f;
   --bg-surface: #1e1b17;
   --bg-surface-hover: #29241e;
 
-  /* Borders */
   --border-color: #3a342b;
 
-  /* Text */
   --text-primary: #f2ede4;
   --text-secondary: #a39c8f;
 
-  /* Accents */
   --accent-gold: #c99a44;
   --accent-gold-hover: #dcb567;
   --success-green: #3fb950;
   --error-red: #f85149;
   --warning-star: #e3a53d;
 
-  /* Spacing scale */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -30,12 +25,10 @@
   --space-xl: 32px;
   --space-2xl: 48px;
 
-  /* Border radius */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
@@ -268,6 +261,10 @@ input {
   gap: var(--space-lg);
 }
 
+.search-section[hidden] {
+  display: none;
+}
+
 .search-heading {
   font-size: 1.1rem;
   font-weight: 600;
@@ -300,6 +297,7 @@ input {
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
+  animation: fadeInUp 0.2s ease;
 }
 
 .loading-state[hidden] {
@@ -383,6 +381,7 @@ input {
   gap: var(--space-md);
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeInUp 0.3s ease;
 }
 
 .profile-card:hover {
@@ -534,10 +533,57 @@ input {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  animation: fadeInUp 0.3s ease;
 }
 
 .battle-result[hidden] {
   display: none;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.battle-score {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.battle-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.battle-reset-btn {
+  align-self: center;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-lg);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.battle-reset-btn:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--accent-gold);
+}
+
+.battle-reset-btn:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
 }
 
 .battle-card {
@@ -546,6 +592,11 @@ input {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -554,7 +605,6 @@ input {
   box-shadow: var(--shadow-md);
 }
 
-/* Prepared modifiers — applied via JS once totals are compared */
 .battle-card--winner {
   border-color: var(--success-green);
   box-shadow: 0 0 0 1px var(--success-green);
@@ -563,6 +613,79 @@ input {
 .battle-card--loser {
   border-color: var(--error-red);
   box-shadow: 0 0 0 1px var(--error-red);
+}
+
+.battle-card__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+}
+
+.battle-card__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.battle-card__username {
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+}
+
+.battle-card__stats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+.battle-stat:last-child {
+  border-bottom: none;
+}
+
+.battle-stat__label {
+  color: var(--text-secondary);
+}
+
+.battle-stat__value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.battle-stat--winning .battle-stat__label {
+  color: var(--text-primary);
+}
+
+.battle-stat--winning .battle-stat__value {
+  color: var(--accent-gold);
+}
+
+.battle-card__badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-surface-hover);
+  color: var(--text-secondary);
+}
+
+.battle-card--winner .battle-card__badge {
+  background-color: rgba(63, 185, 80, 0.15);
+  color: var(--success-green);
+}
+
+.battle-card--loser .battle-card__badge {
+  background-color: rgba(248, 81, 73, 0.15);
+  color: var(--error-red);
 }
 
 
@@ -614,7 +737,7 @@ input {
     align-items: center;
   }
 
-  .battle-result {
+  .battle-cards {
     flex-direction: row;
   }
 
